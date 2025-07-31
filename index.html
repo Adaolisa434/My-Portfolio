@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onyinye Aniebue - Product Manager Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #166088;
+            --accent: #4fc3f7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-text p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .header-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            background-color: var(--light);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .skill-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Experience Section */
+        .experience-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .experience-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-date {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .experience-card ul {
+            padding-left: 1.5rem;
+        }
+        
+        .experience-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .project-tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .experience-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="images/portrait.jpeg" alt="Onyinye Aniebue" class="profile-image">
+                <div class="header-text">
+                    <h1>Onyinye Aniebue</h1>
+                    <p>Product Manager</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/onyinye-aniebue/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/ada_olisaa?s=21&t=TThySsItzWNwwgg44xpcfg" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/ada_olisa/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@onyi.ani?_t=ZM-8yGqsX60hyI&_r=1" aria-label="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="header-buttons">
+                        <a href="#contact" class="btn">Get In Touch</a>
+                        <a href="https://docs.google.com/document/d/1xUDaK0V4108hWI4xg0myGO-5gnAL0vY4aHbHHMmzhig/edit?usp=sharing" class="btn" target="_blank"
+                            <i class="fas fa-download"></i> View Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">MY PORTFOLIO</div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A results-driven Product Management professional with a proven ability to lead cross-functional teams, translate customer needs into innovative product solutions, and drive product success from ideation to execution.</p>
+                    <p>In the past year, I have demonstrated expertise in leveraging data-driven insights, prioritizing user experience, and aligning product strategy with business objectives.</p>
+                    <p>I bring a customer-centric mindset, strong analytical skills, and a hands-on approach to delivering products that meet market demands and generate measurable impact. My aim is to build and scale products that drive sustainable growth and deliver real value to users.
+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Skills & Tools</h2>
+        </div>
+        <div class="skills-grid">
+            <!-- Tools -->
+            <div class="skill-item">
+                <i class="fab fa-jira"></i>
+                <h4>Jira</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-figma"></i>
+                <h4>Figma</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-pencil-ruler"></i>
+                <h4>Whimsical</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-tasks"></i>
+                <h4>ClickUp</h4>
+            </div>
+            <!-- Skills -->
+            <div class="skill-item">
+                <i class="fas fa-chess"></i>
+                <h4>Product Strategy</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-search"></i>
+                <h4>Market Research</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-project-diagram"></i>
+                <h4>Agile Management</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-comments"></i>
+                <h4>Stakeholder Management</h4>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Experience</h2>
+            </div>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <span class="experience-date">JUNE 2025 - PRESENT</span>
+                    <h3>Genesys Tech Hub - Product Manager</h3>
+                    <ul>
+                        <li>Conduct user research to uncover customer pain points and validate product ideas</li>
+                        <li>Lead agile product development cycles, including sprint planning and reviews</li>
+                        <li>Manage stakeholder communications, aligning teams around product goals</li>
+                        <li>Work closely with UI/UX designers and developers to deliver user-friendly interfaces</li>
+                    </ul>
+                </div>
+                <div class="experience-card">
+                    <span class="experience-date">MARCH 2025 - MAY 2025</span>
+                    <h3>Lopsim Technologies Ltd - Product Operations Manager</h3>
+                    <ul>
+                        <li>Collaborated with the engineering team to ensure seamless product operations</li>
+                        <li>Monitored product performance and identified areas of improvement</li>
+                        <li>Managed product documentation for internal stakeholders and end-users</li>
+                        <li>Coordinated user onboarding and facilitated communication</li>
+                    </ul>
+                </div>
+                <div class="experience-card">
+                    <span class="experience-date">JAN 2025 - MAR 2025</span>
+                    <h3>InternPulse - Product Manager (Intern)</h3>
+                    <ul>
+                        <li>Conducted market research and competitive analysis for MTN</li>
+                        <li>Developed a Product Requirement Document (PRD) for a fitness platform</li>
+                        <li>Conducted research for DeepSeek AI</li>
+                        <li>Collaborated on building a payment platform (PedMonie)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <div class="section-title">
+            <h2>My Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/credilet 2.jpg" alt="Product Research" class="project-image">
+                <div class="project-info">
+                    <a href="https://credilet.netlify.app/" class="project-title-link" target="_blank" rel="noopener noreferrer">
+                        <h3>Credilet</h3>
+                    </a>
+                    <div class="project-tags">
+                        <span class="project-tag">Renters</span>
+                        <span class="project-tag">Housing</span>
+                        <span class="project-tag">Property Manager</span>
+                    </div>
+                    <p>Led product strategy, designed user flows, built responsive UI for sign-in and dashboard, and ensured mobile optimization and role-based access.</p>
+                </div>
+            </div>
+             <div class="project-card">
+                <img src="images/PlayNaij.jpeg" alt="Product Research" class="project-image">
+                <div class="project-info">
+                    <a href="https://ezzzinne.github.io/playNaij-frontend/" class="project-title-link" target="_blank" rel="noopener noreferrer">
+                        <h3>PlayNaij</h3>
+                    </a>
+                    <div class="project-tags">
+                        <span class="project-tag">Gaming</span>
+                        <span class="project-tag">Naija</span>
+                        <span class="project-tag">Cultural</span>
+                    </div>
+                    <p>Led the end-to-end development of a casual web gaming platform inspired by Nigerian lifestyle and pop culture. This includes user research, defining the product vision, wireframing, iterative testing, collaborating with cross-functional teams to prioritize features, and ensuring mobile responsiveness. </p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/Urban Fitness.jpg" alt="Fitness Platform" class="project-image">
+                <div class="project-info">
+                    <a href="projects/fitness-platform.html" class="project-title-link" target="_blank" rel="noopener noreferrer">
+                        <h3>Urban Fitness Platform</h3>
+                    </a>
+                    <div class="project-tags">
+                        <span class="project-tag">PRD</span>
+                        <span class="project-tag">UX</span>
+                        <span class="project-tag">Planning</span>
+                    </div>
+                    <p>Developed a comprehensive Product Requirement Document for an urban fitness and wellness platform, outlining features, user flows, and business requirements.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/Ped Monie.png" alt="Payment Platform" class="project-image">
+                <div class="project-info">
+                    <a href="https://www.behance.net/gallery/220578207/PedMonie-Case-Study" class="project-title-link" target="_blank" rel="noopener noreferrer">
+                        <h3>PedMonie Payment Platform</h3>
+                    </a>
+                    <div class="project-tags">
+                        <span class="project-tag">Fintech</span>
+                        <span class="project-tag">Payments</span>
+                        <span class="project-tag">Collaboration</span>
+                    </div>
+                    <p>Collaborated with team members to build a versatile payment platform, contributing to feature definition and user experience design.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/glampro.jpg" alt="Digital Marketing" class="project-image">
+                <div class="project-info">
+                    <a href="projects/digital-marketing.html" class="project-title-link" target="_blank" rel="noopener noreferrer">
+                        <h3>GlamPro</h3>
+                    </a>
+                    <div class="project-tags">
+                        <span class="project-tag">Makeup</span>
+                        <span class="project-tag">Bookings</span>
+                        <span class="project-tag">Security</span>
+                    </div>
+                    <p>Led the end-to-end development of a web-based platform designed to simplify business operations for makeup artists and collaborated cross-functionally to write user stories, design user flows, and oversee Scrum ceremonies. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Education Section -->
+    <section id="education" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education & Certifications</h2>
+            </div>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <span class="experience-date">2016</span>
+                    <h3>Nnamdi Azikiwe University</h3>
+                    <p>B.Sc. Pure and Industrial Chemistry</p>
+                </div>
+                <div class="experience-card">
+                    <span class="experience-date">2024</span>
+                    <h3>University of Lagos Business School</h3>
+                    <p>Masters in Business Administration, specialization in marketing (MBA)</p>
+                </div>
+                <div class="experience-card">
+                    <span class="experience-date">2024</span>
+                    <h3>ProductDive</h3>
+                    <p>Transitioning to Product Management - Certificate of Completion</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <<section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-info" style="max-width: 600px; margin: 0 auto;">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Let's Connect</h3>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+234 812 2674 801</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:oaniebue434@gmail.com">oaniebue434@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/onyinye-aniebue/" target="_blank">LinkedIn: Onyinye Aniebue</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Lagos, Nigeria</span>
+                </div>
+                <div class="social-links" style="justify-content: center; margin-top: 2rem;">
+                    <a href="https://www.linkedin.com/in/onyinye-aniebue/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/ada_olisaa?s=21&t=TThySsItzWNwwgg44xpcfg" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/ada_olisa/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@onyi.ani?_t=ZM-8yGqsX60hyI&_r=1" aria-label="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 Onyinye Aniebue. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/onyinye-aniebue/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/ada_olisaa?s=21&t=TThySsItzWNwwgg44xpcfg" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/ada_olisa/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@onyi.ani?_t=ZM-8yGqsX60hyI&_r=1" aria-label="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                navLinks.classList.remove('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
